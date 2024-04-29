@@ -1,0 +1,7 @@
+-La carta di credito sarà inserita dall'utente post registrazione 
+	1 Inserimento dati cliente nel db 
+	2 Generazione codice cliente (codice smart card)
+	3 Il cliente avrà la possibilità di inserire subito la carta di credito o potrà farlo in seguito
+	4 Dopo che il cliente avrà inserito la sua carta, il servizio web dovrà registrare la carta nel db inserendo anche il codice dell'utente
+
+-Appena l'utente si registra verrà immediatamente creato il codice identificativo così da non creare problemi alle varie relazioni con le tabelle indirizzi,smart_cards e carte_credito

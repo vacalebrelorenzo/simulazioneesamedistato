@@ -1,0 +1,4 @@
+-Trovare una migliore struttura del db
+	-Migliorare gestione delle relazioni
+	-Pensare a come sistemare la faccenda slot-stazioni
+	-Gestione generale primary keys per indirizzi-clienti-smart_card
