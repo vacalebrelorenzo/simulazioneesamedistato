@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 29, 2024 alle 18:55
+-- Creato il: Mag 10, 2024 alle 08:19
 -- Versione del server: 10.4.32-MariaDB
--- Versione PHP: 8.0.30
+-- Versione PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,8 +46,6 @@ CREATE TABLE `carte_credito` (
   `nome` varchar(32) NOT NULL,
   `cognome` varchar(32) NOT NULL,
   `numero` varchar(16) NOT NULL,
-  `cvv` int(11) NOT NULL,
-  `data_scadenza` date NOT NULL,
   `codice_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 

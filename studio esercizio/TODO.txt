@@ -1,7 +1,7 @@
 -Trovare una migliore struttura del db
 	-Migliorare gestione delle relazioni
-	-Pensare a come sistemare la faccenda slot-stazioni
-	-Gestione generale primary keys per indirizzi-clienti-smart_card
--Capire se è utile utilizzare l'entità slot
--Modificare db dato il nuovo diagramma ER del 30/04/2024
--Capire se vale la pena utilizzare due tabelle per clienti e admin
+	-Modificare tutte le relazioni del db in modo tale che io faccia le relazioni chiavePrimaria->chiaveEsterna
+
+-Dopo aver effettuato le modifiche riguardo le relazioni del db, testare se l'utente test viene inserito correttamente nel db
+
+-Modificare il codice in modo tale da poter inserire qualsiasi utente e non solo utenti esempio
