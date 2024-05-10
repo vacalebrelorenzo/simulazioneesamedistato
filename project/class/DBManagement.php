@@ -15,7 +15,6 @@
 
         public function inserimentoUtente()
         {
-
             $conn = new mysqli($this->hostname, $this->username, $this->password, $this->database);
 
             if ($conn->connect_error) {
@@ -26,17 +25,21 @@
 
             $stmt = $conn->prepare($sql);
 
+            if (!$stmt) {
+                die("Errore nella preparazione della query: " . $conn->error);
+            }
+
             $username = "lv";
             $password = md5("1234");
             $email = "lorenzo@gmail.com";
-            $isAdmin = 1;
-            $codice_bici = "";
+            $isAdmin = true;
+            $codice_bici = 1;
 
             $stmt->bind_param("sssii", $username, $password, $email, $isAdmin, $codice_bici);
 
             $status = "";
 
-            if ($stmt->execute())
+            if ($stmt->execute() == true)
                 $status = "ok";
             else 
                 $status = "error";
@@ -47,7 +50,5 @@
             return $status;
         }
 
-
-        
     }
 ?>

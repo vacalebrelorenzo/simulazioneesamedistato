@@ -2,6 +2,4 @@
 	-Migliorare gestione delle relazioni
 	-Modificare tutte le relazioni del db in modo tale che io faccia le relazioni chiavePrimaria->chiaveEsterna
 
--Dopo aver effettuato le modifiche riguardo le relazioni del db, testare se l'utente test viene inserito correttamente nel db
-
 -Modificare il codice in modo tale da poter inserire qualsiasi utente e non solo utenti esempio

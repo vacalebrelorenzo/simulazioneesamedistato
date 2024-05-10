@@ -6,5 +6,4 @@
     $status = $dbM->inserimentoUtente();
 
     echo $status;
-
 ?>

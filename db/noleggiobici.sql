@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 10, 2024 alle 08:19
+-- Creato il: Mag 10, 2024 alle 21:36
 -- Versione del server: 10.4.32-MariaDB
--- Versione PHP: 8.2.12
+-- Versione PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,7 +61,7 @@ CREATE TABLE `clienti` (
   `password` varchar(64) NOT NULL,
   `email` varchar(64) NOT NULL,
   `isAdmin` tinyint(1) NOT NULL,
-  `codice_bici` int(11) NOT NULL
+  `codice_bici` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -214,10 +214,15 @@ ALTER TABLE `bici`
   ADD CONSTRAINT `bici_ibfk_2` FOREIGN KEY (`id_stazione`) REFERENCES `stazione` (`ID`);
 
 --
+-- Limiti per la tabella `carte_credito`
+--
+ALTER TABLE `carte_credito`
+  ADD CONSTRAINT `carte_credito_ibfk_1` FOREIGN KEY (`codice_cliente`) REFERENCES `clienti` (`codice_identificativo`);
+
+--
 -- Limiti per la tabella `clienti`
 --
 ALTER TABLE `clienti`
-  ADD CONSTRAINT `clienti_ibfk_1` FOREIGN KEY (`codice_identificativo`) REFERENCES `carte_credito` (`codice_cliente`),
   ADD CONSTRAINT `clienti_ibfk_2` FOREIGN KEY (`codice_bici`) REFERENCES `bici` (`codice_identificativo`);
 
 --
