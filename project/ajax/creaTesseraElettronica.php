@@ -5,9 +5,8 @@
 
     $username = $_GET["username"];
     $password = $_GET["password"];
-    $email = $_GET["email"];
 
-    $status = $dbM->inserimentoUtente($username, $password, $email);
+    $status = $dbM->trovaUtente($username, $password);
 
     echo $status;
 ?>

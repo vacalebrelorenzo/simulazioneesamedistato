@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 10, 2024 alle 21:36
+-- Creato il: Mag 17, 2024 alle 20:03
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.0.30
 
@@ -31,8 +31,8 @@ CREATE TABLE `bici` (
   `codice_identificativo` int(11) NOT NULL,
   `km_totali` int(11) NOT NULL,
   `isRented` tinyint(1) NOT NULL,
-  `id_stazione` int(11) NOT NULL,
-  `codice_gps` int(11) NOT NULL
+  `id_stazione` int(11) DEFAULT NULL,
+  `codice_gps` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -46,7 +46,7 @@ CREATE TABLE `carte_credito` (
   `nome` varchar(32) NOT NULL,
   `cognome` varchar(32) NOT NULL,
   `numero` varchar(16) NOT NULL,
-  `codice_cliente` int(11) NOT NULL
+  `codice_cliente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -63,6 +63,13 @@ CREATE TABLE `clienti` (
   `isAdmin` tinyint(1) NOT NULL,
   `codice_bici` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dump dei dati per la tabella `clienti`
+--
+
+INSERT INTO `clienti` (`codice_identificativo`, `username`, `password`, `email`, `isAdmin`, `codice_bici`) VALUES
+(1, 'lv', '$2y$10$A69qRMkSlS5kzK48l87F7uCW37oZy9aDczWZS0Wtrhw7qRzlhG3GG', 'lorenzo@gmail.com', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -89,7 +96,7 @@ CREATE TABLE `indirizzi` (
   `via` varchar(32) NOT NULL,
   `numero_civico` int(11) NOT NULL,
   `cap` varchar(5) NOT NULL,
-  `codice_cliente` int(11) NOT NULL
+  `codice_cliente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -100,7 +107,7 @@ CREATE TABLE `indirizzi` (
 
 CREATE TABLE `smart_cards` (
   `ID` int(11) NOT NULL,
-  `codice_cliente` int(11) NOT NULL
+  `codice_cliente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -115,7 +122,7 @@ CREATE TABLE `stazione` (
   `latitudine` varchar(32) NOT NULL,
   `num_slot` int(11) NOT NULL,
   `num_bici_disp` int(11) NOT NULL,
-  `id_indirizzo` int(11) NOT NULL
+  `id_indirizzo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -179,10 +186,22 @@ ALTER TABLE `stazione`
 --
 
 --
+-- AUTO_INCREMENT per la tabella `bici`
+--
+ALTER TABLE `bici`
+  MODIFY `codice_identificativo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `carte_credito`
 --
 ALTER TABLE `carte_credito`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `clienti`
+--
+ALTER TABLE `clienti`
+  MODIFY `codice_identificativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `indirizzi`

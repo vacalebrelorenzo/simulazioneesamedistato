@@ -5,16 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noleggio Biciclette</title>
     <script src="script/jquery-3.7.1.min.js"></script>
-    <script src="script/login.js"></script>
     <script src="script/ajax.js"></script>
+    <script src="script/js.js"></script>
 </head>
 <body>
     <h1>Sito Noleggio Biciclette</h1>
-    <div id="container">
+    
+    <div id="log-container">
+        <input type='text' id='username' placeholder='inserisci username!'>   
+        <input type='password' id='password' placeholder='inserisci password!'> 
+        <button type='button' onclick='effettuaLogin()'>Login</button>
+        <button type='button' id="btnFormReg" onclick='caricaFormRegistrazione()'>Registrati</button> 
+    </div>
+
+    <div id ="reg-container">
         
     </div>
-    
-    <!-- bottone esempio per inserire il primo utente admin -->
-    <button type="button" id="inserimento" onclick="inserimentoUtente()">iiiii</button>
 </body>
 </html>

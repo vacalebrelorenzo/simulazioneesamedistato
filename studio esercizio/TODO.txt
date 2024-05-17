@@ -1,5 +1,3 @@
--Trovare una migliore struttura del db
-	-Migliorare gestione delle relazioni
-	-Modificare tutte le relazioni del db in modo tale che io faccia le relazioni chiavePrimaria->chiaveEsterna
-
--Modificare il codice in modo tale da poter inserire qualsiasi utente e non solo utenti esempio
+-Trovare una soluzione per l'inserimento delle carte di credito
+-Permetti all'utente di inserire il proprio indirizzo di casa durante la registrazione(salvare nel db indirizzo il nuovo indirizzo 
+inserito dall'utente controllando ovviamente che quest'ultimo non sia già presente nella tabella del db)
