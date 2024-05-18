@@ -7,19 +7,30 @@
     <script src="script/jquery-3.7.1.min.js"></script>
     <script src="script/ajax.js"></script>
     <script src="script/js.js"></script>
+    <link rel="stylesheet" href="style/style.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Sito Noleggio Biciclette</h1>
     
-    <div id="log-container">
-        <input type='text' id='username' placeholder='inserisci username!'>   
-        <input type='password' id='password' placeholder='inserisci password!'> 
-        <button type='button' onclick='effettuaLogin()'>Login</button>
-        <button type='button' id="btnFormReg" onclick='caricaFormRegistrazione()'>Registrati</button> 
+    <div id="start" class="container text-center mt-5">
+        <h1 class="mb-4">Sito Noleggio Biciclette</h1>
+        <button type="button" id="btnFormlog" class="btn btn-primary btn-lg m-2" onclick="caricaFormLogin()">Login</button>
+        <button type="button" id="btnFormReg" class="btn btn-secondary btn-lg m-2" onclick="caricaFormRegistrazione()">Registrati</button>
     </div>
 
-    <div id ="reg-container">
-        
+    <div id="form-container" class="container mt-5" style="display: none;">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div id="form-content" class="p-4 bg-white rounded shadow-sm"></div>
+            </div>
+        </div>
     </div>
+    
+    <!-- Da inserire nelle opzioni del profilo dell'utente
+    <input type="text" id="nome" placeholder="inserisci il nome" required>
+    <input type="text" id="cognome" placeholder="inserisci il cognome" required>
+    <input type="text" id="numeroCarta" placeholder="inserisci il numero della carta di credito" required>
+    -->
+
 </body>
 </html>

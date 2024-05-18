@@ -1,3 +1,7 @@
 -Trovare una soluzione per l'inserimento delle carte di credito
 -Permetti all'utente di inserire il proprio indirizzo di casa durante la registrazione(salvare nel db indirizzo il nuovo indirizzo 
 inserito dall'utente controllando ovviamente che quest'ultimo non sia già presente nella tabella del db)
+-Gestione carta di credito dal profilo post login
+-Migliora inserimento utente nel db in modo tale da non dover fare 3 richieste di seguito solo per inserire l'utente, quindi
+controllare tutto ciò che serve (indirizzi,presenza di username uguali e creazione smart_cards) nei metodi del db
+-Implementare stile bootstrap

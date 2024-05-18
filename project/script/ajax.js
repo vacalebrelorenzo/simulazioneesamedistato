@@ -7,7 +7,7 @@ function effettuaLogin()
         
         console.log(data);
         if(data.status == "ok")
-            window.location.href = "pagine/paginaPrincipale.php";
+            caricaFormLoginEffettuata();
     } , "json");
 }
 
@@ -16,6 +16,8 @@ function effettuaRegistrazione()
     let username = $("#usn").val();
     let password = $("#psw").val();
     let email = $("#email").val();
+
+    //TODO: Sviluppo nuova richiesta ajax
 
     $.get("./ajax/checkUsername.php", {username:username}, async function(data1) {
         console.log("Stato controllo esistenza username ->" + data1); //se data = ok l'username non esiste
@@ -30,7 +32,7 @@ function effettuaRegistrazione()
                     $.get("./ajax/creaTesseraElettronica.php", {username: username, password: password}, async function (data2) {
                         console.log("Stato creazione tessera ->" + data2);
 
-                        resettaFormRegistrazione();
+                        resettaForm();
         
                         if(data2 === "ok")
                             alert("Registrazione avvenuta con successo!");
@@ -44,7 +46,7 @@ function effettuaRegistrazione()
         }
         else
         {
-            resettaFormRegistrazione();
+            resettaForm();
             alert("Username già utilizzato, scegline un altro!");
         }
     });
