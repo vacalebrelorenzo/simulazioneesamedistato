@@ -9,7 +9,7 @@ function caricaFormRegistrazione() {
     let psw = '<input type="password" id="psw" class="form-control" placeholder="Inserisci la tua password" required>';
     let email = '<input type="email" id="email" class="form-control" placeholder="Inserisci la tua email" required>';
     let citta = '<input type="text" id="citta" class="form-control" placeholder="Inserisci la città" required>';
-    let cap = '<input type="number" id="cap" class="form-control" placeholder="Inserisci il CAP" required>';
+    let cap = '<input type="text" id="cap" class="form-control" placeholder="Inserisci il CAP" required>';
     let via = '<input type="text" id="via" class="form-control" placeholder="Inserisci la via" required>';
     let numCiv = '<input type="text" id="numCiv" class="form-control" placeholder="Inserisci il civico" required>';
     let btnSubmit = '<button id="registra" class="btn btn-primary btn-block" onclick="effettuaRegistrazione()">Registrati!</button>';

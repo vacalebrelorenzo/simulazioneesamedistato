@@ -53,7 +53,7 @@
                 die("Connessione fallita: " . $conn->connect_error);
             }
 
-            $sql = "SELECT codice_identificativo, password FROM clienti WHERE username = ?";
+            $sql = "SELECT codice_identificativo FROM clienti WHERE username = ?";
             $stmt = $conn->prepare($sql);
 
             if (!$stmt) {
@@ -78,8 +78,8 @@
 
             return $status;
         }
-        
-        public function trovaUtente($usn, $psw)
+
+        public function trovaUtente($usn)
         {
             $conn = new mysqli($this->hostname, $this->username, $this->password, $this->database);
 
@@ -104,17 +104,11 @@
 
             if ($result->num_rows === 1) {
                 $row = $result->fetch_assoc();
-                $hash = $row['password'];
-                
-                if (password_verify($psw, $hash)) {
-                    $statoCreazioneTessera = $this->creaTessera($row['codice_identificativo']);
-                    $status = $statoCreazioneTessera;
-                } else {
-                    $status = "error:" + $stmt->error;
-                }
+                $statoCreazioneTessera = $this->creaTessera($row['codice_identificativo']);
+                $status = $statoCreazioneTessera;
             } 
             else
-                $status = "error:" + $stmt->error;
+                $status = "error:" . $stmt->error;
 
             $stmt->close();
             $conn->close();

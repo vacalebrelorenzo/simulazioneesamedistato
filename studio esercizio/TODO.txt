@@ -4,4 +4,5 @@ inserito dall'utente controllando ovviamente che quest'ultimo non sia già prese
 -Gestione carta di credito dal profilo post login
 -Migliora inserimento utente nel db in modo tale da non dover fare 3 richieste di seguito solo per inserire l'utente, quindi
 controllare tutto ciò che serve (indirizzi,presenza di username uguali e creazione smart_cards) nei metodi del db
--Implementare stile bootstrap
+-Esportare db modificato
+-Unisci metodi checkUsername e trovaUtente

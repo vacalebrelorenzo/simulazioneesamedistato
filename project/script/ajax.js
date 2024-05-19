@@ -17,8 +17,22 @@ function effettuaRegistrazione()
     let password = $("#psw").val();
     let email = $("#email").val();
 
-    //TODO: Sviluppo nuova richiesta ajax
+    $.get("./ajax/checkAddUser.php", {username: username, password: password, email:email},  function (data) {
+        console.log(data);
+        if(data.status === "ok")
+        {
+            alert(data.information);
+            resettaForm();
+        }
+        else
+        {
+            alert(data.information);
+            resettaForm();
+        }
+    }, "json");
 
+    //Richieste vecchie per registrazione
+    /*
     $.get("./ajax/checkUsername.php", {username:username}, async function(data1) {
         console.log("Stato controllo esistenza username ->" + data1); //se data = ok l'username non esiste
 
@@ -50,5 +64,7 @@ function effettuaRegistrazione()
             alert("Username già utilizzato, scegline un altro!");
         }
     });
+    */
+
 }
 
