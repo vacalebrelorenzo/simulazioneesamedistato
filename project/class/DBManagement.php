@@ -21,7 +21,7 @@
                 die("Connessione fallita: " . $conn->connect_error);
             }
 
-            $sql = "SELECT longitudine, latitudine FROM stazione";
+            $sql = "SELECT nome, longitudine, latitudine FROM stazione";
             $stmt = $conn->prepare($sql);
 
             if (!$stmt) {
@@ -166,7 +166,7 @@
                 die("Connessione fallita: " . $conn->connect_error);
             }
 
-            $sql = "SELECT password FROM clienti WHERE username = ?";
+            $sql = "SELECT password, isAdmin FROM clienti WHERE username = ?";
             $stmt = $conn->prepare($sql);
 
             if (!$stmt) {
@@ -181,6 +181,7 @@
 
             $msg = "";
             $stato = "";
+            $isAdmin = "";
 
             if ($result->num_rows === 1) {
                 $row = $result->fetch_assoc();
@@ -188,9 +189,11 @@
                 
                 if (password_verify($psw, $hash)) {
                     $msg = "Accesso consentito!";
+                    $isAdmin = $row["isAdmin"];
                     $stato = "ok";
                 } else {
                     $msg = "Username o password errati.";
+                    $isAdmin = "No";
                     $stato = "error";
                 }
             } else {
@@ -201,7 +204,7 @@
             $stmt->close();
             $conn->close();
 
-            return array("status" => $stato, "information" => $msg);
+            return array("status" => $stato, "information" => $msg, "isAdmin" => $isAdmin);
         }
 
         public function addAddress($usn, $city,$via,$cap,$numCiv)

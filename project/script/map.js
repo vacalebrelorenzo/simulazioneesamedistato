@@ -11,13 +11,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 function addMarker(data)
 {
-    let arr = JSON.parse(data);
-    console.log(arr);
-
-    for(let i = 0; i < arr["vettore"].length; i++)
+    for(let i = 0; i < data["vettore"].length; i++)
     {
-        let marker = L.marker([arr["vettore"][i]["latitudine"], arr["vettore"][i]["longitudine"]]).addTo(map);
-        marker.bindPopup("Stazione " + (i+1));
+        let marker = L.marker([data["vettore"][i]["latitudine"], data["vettore"][i]["longitudine"]]).addTo(map);
+        marker.bindPopup(data["vettore"][i]["nome"]);
     }
 }
 
