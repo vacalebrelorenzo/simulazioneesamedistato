@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 17, 2024 alle 20:03
+-- Creato il: Mag 20, 2024 alle 07:23
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.0.30
 
@@ -69,7 +69,13 @@ CREATE TABLE `clienti` (
 --
 
 INSERT INTO `clienti` (`codice_identificativo`, `username`, `password`, `email`, `isAdmin`, `codice_bici`) VALUES
-(1, 'lv', '$2y$10$A69qRMkSlS5kzK48l87F7uCW37oZy9aDczWZS0Wtrhw7qRzlhG3GG', 'lorenzo@gmail.com', 1, NULL);
+(1, 'lv', '$2y$10$A69qRMkSlS5kzK48l87F7uCW37oZy9aDczWZS0Wtrhw7qRzlhG3GG', 'lorenzo@gmail.com', 1, NULL),
+(9, 'pasqualino22', '$2y$10$YmqdyPNdPUa0L8xD2bKCJeP210g1UaglBG6QG6gy2gwNhbB5N7Hku', 'pasqualino22@gmail.com', 0, NULL),
+(10, 'ciruzzo100', '$2y$10$aSpD7xRkE3qfSssVONcHl.I4rUWJlVTx2DiFT8jFo/qlu.KeuzW0.', 'ciruzzo100@gmail.com', 0, NULL),
+(13, 'pasqualino45', '$2y$10$jSSzj4v/F7bRBXpHUb2kneKdJv4VHfYu5Eni8dWt6S6Ldf//2rFsi', 'pasqualino45@gmail.com', 0, NULL),
+(26, 'Antonio88', '$2y$10$acyR/P.ZJEMXC129vEkItewkZ5LGxcUPttAOWHSQqXorywYYmUPL6', 'antoninoLoveFutbal@gmail.com', 0, NULL),
+(27, 'alberto22', '$2y$10$ofZ6Z.nocqkzsm7OveyYTOQ8rUNaADnVymwWbYtQxX3gn9JaYvDIO', 'alberto@gmail.com', 0, NULL),
+(28, 'nicola23', '$2y$10$r.8KZ1AZciqdSqhvmpHCqevWN6axugNetSBAZ6lml3rpzCjN5ojIG', 'nicola@gmail.com', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -92,9 +98,9 @@ CREATE TABLE `gps` (
 
 CREATE TABLE `indirizzi` (
   `ID` int(11) NOT NULL,
-  `città` varchar(32) NOT NULL,
+  `citta` varchar(32) NOT NULL,
   `via` varchar(32) NOT NULL,
-  `numero_civico` int(11) NOT NULL,
+  `numero_civico` varchar(5) NOT NULL,
   `cap` varchar(5) NOT NULL,
   `codice_cliente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -109,6 +115,18 @@ CREATE TABLE `smart_cards` (
   `ID` int(11) NOT NULL,
   `codice_cliente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dump dei dati per la tabella `smart_cards`
+--
+
+INSERT INTO `smart_cards` (`ID`, `codice_cliente`) VALUES
+(2, 9),
+(3, 10),
+(6, 13),
+(15, 26),
+(16, 27),
+(17, 28);
 
 -- --------------------------------------------------------
 
@@ -201,19 +219,19 @@ ALTER TABLE `carte_credito`
 -- AUTO_INCREMENT per la tabella `clienti`
 --
 ALTER TABLE `clienti`
-  MODIFY `codice_identificativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `codice_identificativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT per la tabella `indirizzi`
 --
 ALTER TABLE `indirizzi`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `smart_cards`
 --
 ALTER TABLE `smart_cards`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT per la tabella `stazione`
@@ -248,13 +266,13 @@ ALTER TABLE `clienti`
 -- Limiti per la tabella `indirizzi`
 --
 ALTER TABLE `indirizzi`
-  ADD CONSTRAINT `indirizzi_ibfk_1` FOREIGN KEY (`codice_cliente`) REFERENCES `clienti` (`codice_identificativo`);
+  ADD CONSTRAINT `indirizzi_ibfk_1` FOREIGN KEY (`codice_cliente`) REFERENCES `clienti` (`codice_identificativo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `smart_cards`
 --
 ALTER TABLE `smart_cards`
-  ADD CONSTRAINT `smart_cards_ibfk_1` FOREIGN KEY (`codice_cliente`) REFERENCES `clienti` (`codice_identificativo`);
+  ADD CONSTRAINT `smart_cards_ibfk_1` FOREIGN KEY (`codice_cliente`) REFERENCES `clienti` (`codice_identificativo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `stazione`
