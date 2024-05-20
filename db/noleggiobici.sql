@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 20, 2024 alle 07:23
+-- Creato il: Mag 20, 2024 alle 11:39
 -- Versione del server: 10.4.32-MariaDB
--- Versione PHP: 8.0.30
+-- Versione PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -75,7 +75,8 @@ INSERT INTO `clienti` (`codice_identificativo`, `username`, `password`, `email`,
 (13, 'pasqualino45', '$2y$10$jSSzj4v/F7bRBXpHUb2kneKdJv4VHfYu5Eni8dWt6S6Ldf//2rFsi', 'pasqualino45@gmail.com', 0, NULL),
 (26, 'Antonio88', '$2y$10$acyR/P.ZJEMXC129vEkItewkZ5LGxcUPttAOWHSQqXorywYYmUPL6', 'antoninoLoveFutbal@gmail.com', 0, NULL),
 (27, 'alberto22', '$2y$10$ofZ6Z.nocqkzsm7OveyYTOQ8rUNaADnVymwWbYtQxX3gn9JaYvDIO', 'alberto@gmail.com', 0, NULL),
-(28, 'nicola23', '$2y$10$r.8KZ1AZciqdSqhvmpHCqevWN6axugNetSBAZ6lml3rpzCjN5ojIG', 'nicola@gmail.com', 0, NULL);
+(28, 'nicola23', '$2y$10$r.8KZ1AZciqdSqhvmpHCqevWN6axugNetSBAZ6lml3rpzCjN5ojIG', 'nicola@gmail.com', 0, NULL),
+(39, 'Finazzi90', '$2y$10$5Q8BKB3y6s8J0btYsMGvMO/pGc7LQc9dEWkpTiKe0jKPkYg/jZhk6', 'finazziGuidaOk@gmail.xom', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -89,6 +90,13 @@ CREATE TABLE `gps` (
   `isCharged` tinyint(1) NOT NULL,
   `isOn` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dump dei dati per la tabella `gps`
+--
+
+INSERT INTO `gps` (`codice_identificativo`, `tipo_batteria`, `isCharged`, `isOn`) VALUES
+(0, 'Ricaricabile', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -104,6 +112,16 @@ CREATE TABLE `indirizzi` (
   `cap` varchar(5) NOT NULL,
   `codice_cliente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dump dei dati per la tabella `indirizzi`
+--
+
+INSERT INTO `indirizzi` (`ID`, `citta`, `via`, `numero_civico`, `cap`, `codice_cliente`) VALUES
+(7, 'Saronno', 'via dell\'alpino ', '22', '09999', 39),
+(8, 'Milano', 'Via Giorgio Pallavicino', '22', '20154', NULL),
+(9, 'Milano', 'Via Giulio Cesare Procaccini', '12', '20154', NULL),
+(10, 'Milano', 'Via Cappuccini', '1', '20122', NULL);
 
 -- --------------------------------------------------------
 
@@ -126,7 +144,8 @@ INSERT INTO `smart_cards` (`ID`, `codice_cliente`) VALUES
 (6, 13),
 (15, 26),
 (16, 27),
-(17, 28);
+(17, 28),
+(28, 39);
 
 -- --------------------------------------------------------
 
@@ -142,6 +161,15 @@ CREATE TABLE `stazione` (
   `num_bici_disp` int(11) NOT NULL,
   `id_indirizzo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dump dei dati per la tabella `stazione`
+--
+
+INSERT INTO `stazione` (`ID`, `longitudine`, `latitudine`, `num_slot`, `num_bici_disp`, `id_indirizzo`) VALUES
+(1, '9.162878267065034', '45.47161109266796', 20, 20, 8),
+(2, '9.173351600765779', '45.483881813937124', 20, 20, 9),
+(3, '9.201922282117051', '45.47033854298927', 20, 20, 10);
 
 --
 -- Indici per le tabelle scaricate
@@ -219,25 +247,25 @@ ALTER TABLE `carte_credito`
 -- AUTO_INCREMENT per la tabella `clienti`
 --
 ALTER TABLE `clienti`
-  MODIFY `codice_identificativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `codice_identificativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT per la tabella `indirizzi`
 --
 ALTER TABLE `indirizzi`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT per la tabella `smart_cards`
 --
 ALTER TABLE `smart_cards`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT per la tabella `stazione`
 --
 ALTER TABLE `stazione`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Limiti per le tabelle scaricate
@@ -278,7 +306,7 @@ ALTER TABLE `smart_cards`
 -- Limiti per la tabella `stazione`
 --
 ALTER TABLE `stazione`
-  ADD CONSTRAINT `stazione_ibfk_1` FOREIGN KEY (`id_indirizzo`) REFERENCES `indirizzi` (`ID`);
+  ADD CONSTRAINT `stazione_ibfk_1` FOREIGN KEY (`id_indirizzo`) REFERENCES `indirizzi` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -13,6 +13,38 @@
             $this->database = "noleggiobici";
         }
 
+        public function get_station_location()
+        {
+            $conn = new mysqli($this->hostname, $this->username, $this->password, $this->database);
+
+            if ($conn->connect_error) {
+                die("Connessione fallita: " . $conn->connect_error);
+            }
+
+            $sql = "SELECT longitudine, latitudine FROM stazione";
+            $stmt = $conn->prepare($sql);
+
+            if (!$stmt) {
+                die("Errore nella preparazione della query: " . $conn->error);
+            }
+
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+
+            $arr = array();
+            
+            if($result->num_rows > 0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                    $arr[] = $row;
+                }
+            }
+
+            return array("status" => "ok", "vettore" => $arr);
+        }
+
         private function controlloPresenzaUsername($usn)
         {
             $conn = new mysqli($this->hostname, $this->username, $this->password, $this->database);

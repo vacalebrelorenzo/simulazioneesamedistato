@@ -1,10 +1,17 @@
+$(document).ready(function(){
+    $.get("./ajax/get_station_location.php", {} , function (data)
+    {
+        console.log(data);
+        addMarker(data);
+    });
+}, "json");
+
 function effettuaLogin()
 {
     let username = $("#username").val();
     let password = $("#password").val();
 
     $.get("./ajax/login.php", { username: username, password: password }, async function (data) {
-        
         console.log(data);
         if(data.status == "ok")
             caricaFormLoginEffettuata();
@@ -36,5 +43,6 @@ async function effettuaRegistrazione() {
         resettaForm();
     }
 }
+
 
 
