@@ -1,3 +1,8 @@
+function caricaFormLoginEffettuata()
+{
+    //TODO: implementa
+}
+
 function caricaFormRegistrazione() {
     let title = "<h1>Registrati!</h1>";
     let us = '<input type="text" id="usn" class="form-control" placeholder="Inserisci il tuo username" required>';
@@ -22,6 +27,7 @@ function caricaFormLogin() {
     let btnSubmit = "<button type='button' class='btn btn-primary btn-block' onclick='effettuaLogin()'>Login</button>";
     let btnclose = '<button id="closeReg" class="btn btn-secondary btn-block" onclick="resettaForm()">Indietro</button>';
 
+
     $("#form-content").html(title + us + psw + btnSubmit + btnclose);
     $("#start").hide();
     $("#form-container").show();
@@ -32,5 +38,3 @@ function resettaForm() {
     $("#start").show();
     $("#form-container").hide();
 }
-
-

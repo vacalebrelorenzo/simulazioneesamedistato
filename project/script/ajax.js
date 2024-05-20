@@ -1,42 +1,25 @@
 $(document).ready(function(){
-    getStationLocation();
-});
-
-function getStationLocation()
-{
     $.get("./ajax/get_station_location.php", {} , function (data)
     {
         console.log(data);
         addMarker(data);
-    }, "json");
-}
+    });
+}, "json");
 
 function effettuaLogin()
 {
     let username = $("#username").val();
     let password = $("#password").val();
 
-    $.get("./ajax/login.php", { username: username, password: password }, function (data) {
+    $.get("./ajax/login.php", { username: username, password: password }, async function (data) {
         console.log(data);
-        if(data.status === "ok") {
-            $("#utente-login").text(username);
-
-            if(data.isAdmin === 1)
-            {
-                caricaAdminInfo();
-                resettaForm();
-            }
-            else
-            {
-                $("#btnLogout").css("display", "block");
-                chiudiBtnFormMain();
-                resettaForm();
-            }
-        }
+        if(data.status == "ok")
+            caricaFormLoginEffettuata();
     } , "json");
 }
 
 async function effettuaRegistrazione() {
+    // Estrai i valori dai campi del modulo
     let username = $("#usn").val();
     let password = $("#psw").val();
     let email = $("#email").val();
@@ -55,40 +38,11 @@ async function effettuaRegistrazione() {
         console.log(data2);
         alert(data.information); 
         resettaForm();
-        chiudiAdmin();
     } else {
         alert("Non è stato possibile portare a termine la registrazione!");
         resettaForm();
-        chiudiAdmin();
     }
 }
 
-function logout()
-{
-    $("#utente-login").text("Accesso non effettuato");
-    apriBtnFormMain();
-    chiudiAdminInfo();
-}
-function caricaAdminInfo() {
-    $("#btnAdmin").css("display", "block");
-    $("#btnLogout").css("display", "block");
-    chiudiBtnFormMain();
-}
 
-function chiudiAdminInfo()
-{
-    $("#btnAdmin").css("display", "none");
-    $("#btnLogout").css("display", "none");
-}
 
-function chiudiBtnFormMain()
-{
-    $("#btnFormlog").css("display", "none");
-    $("#btnFormReg").css("display", "none");
-}
-
-function apriBtnFormMain()
-{
-    $("#btnFormlog").css("display", "block");
-    $("#btnFormReg").css("display", "block");
-}
