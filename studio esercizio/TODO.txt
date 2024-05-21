@@ -1,3 +1,5 @@
 -Trovare una soluzione per l'inserimento delle carte di credito
 -Gestione carta di credito dal profilo post login
 -Esportare db modificato
+-Implementa metodi per caricare le form nella pagina login + implementa metodi db SQL per gestione per admin
+-implementa bottone "profilo" per permettere all'utente normale di poter modificare le proprie informazioni

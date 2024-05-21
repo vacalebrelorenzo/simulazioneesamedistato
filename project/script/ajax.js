@@ -1,7 +1,3 @@
-$(document).ready(function(){
-    getStationLocation();
-});
-
 function getStationLocation()
 {
     $.get("./ajax/get_station_location.php", {} , function (data)
@@ -33,6 +29,10 @@ function effettuaLogin()
                 resettaForm();
             }
         }
+        else
+        {
+            alert(data.information);
+        }    
     } , "json");
 }
 
@@ -66,9 +66,16 @@ async function effettuaRegistrazione() {
 function logout()
 {
     $("#utente-login").text("Accesso non effettuato");
+
+    $.get("./ajax/logout.php", {} , function (data)
+    {
+        console.log(data);
+    }, "json");
+
     apriBtnFormMain();
     chiudiAdminInfo();
 }
+
 function caricaAdminInfo() {
     $("#btnAdmin").css("display", "block");
     $("#btnLogout").css("display", "block");

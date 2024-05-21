@@ -14,4 +14,6 @@ una sola tabella clienti generica che contiene un flag isAdmin per riconoscere a
 Dalla seconda volta in poi il web service chiederà al cliente: 
 	-se vorrà utilizzare la carta salvata  (visualizzazione numero carta + form per data scadenza e cvv per conferma carta)
 	-se vorrà salvare una nuova carta da utilizzare
-L'admin può quindi visualizzare i numeri delle carte senza però i dati realmente sensibili.
+-L'admin può quindi visualizzare i numeri delle carte senza però i dati realmente sensibili.!!!!!
+-L'admin potrà effettuare tutte le operazioni che vuole riguardo biciclette, stazioni e slot.
+-Il cliente classico può prenotare una bici (utilizza ws), modificare le proprie informazioni e visualizzare riepiloghi (bho).

@@ -1,8 +1,12 @@
+$(document).ready(function(){
+    getStationLocation();
+});
+
 var map;
 
 document.addEventListener('DOMContentLoaded', (event) => {
 
-    map = L.map('map').setView([45.46756502411385, 9.185421017988913], 13);
+    map = L.map('map').setView([45.4654219, 9.1859243], 13);
  
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
