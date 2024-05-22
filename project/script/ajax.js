@@ -63,6 +63,44 @@ async function effettuaRegistrazione() {
     }
 }
 
+function aggiungiStazione()
+{
+    let nome = $("#station-name-add").val();
+    let lat = $("#station-lat").val();
+    let long = $("#station-long").val();
+    let num_slot = $("#num-slot").val();
+
+    let citta = $("#citta").val();
+    let via = $("#via").val();
+    let cap = $("#cap").val();
+    let numCiv = $("#numCiv").val();
+
+    $.get("../ajax/stationManagement.php", { nome: nome, lat: lat, long:long, num_slot: num_slot, citta:citta, via:via, cap:cap, numCiv:numCiv}, function (data) {
+        console.log(data);
+    } , "json");
+}
+
+function eliminaStazione()
+{
+
+
+}
+
+function modificaSlot()
+{
+
+}
+
+function aggiungiBicicletta()
+{
+
+}
+
+function rimuoviBicicletta()
+{
+
+}
+
 function logout()
 {
     $("#utente-login").text("Accesso non effettuato");

@@ -27,16 +27,21 @@
     </nav>
 
     <div id="start" class="container text-center mt-5">
-    <h1 class="mb-4">Pagina Admin</h1>
+        <h1 id="title"class="mb-4">Pagina Admin</h1>
+        <div id="main-info">
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-primary btn-lg m-2" onclick="caricaFormStazioni()">Opzioni Stazioni</button>
+                <button type="button" class="btn btn-primary btn-lg m-2" onclick="caricaFormSlot()">Opzioni Slot</button>
+                <button type="button" class="btn btn-primary btn-lg m-2" onclick="caricaFormBiciclette()">Opzioni Biciclette</button>
+            </div>
 
-        <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-primary btn-lg m-2" onclick="caricaFormStazioni()">Opzioni Stazioni</button>
-            <button type="button" class="btn btn-primary btn-lg m-2" onclick="caricaFormSlot()">Opzioni Slot</button>
-            <button type="button" class="btn btn-primary btn-lg m-2" onclick="caricaFormBiciclette()">Opzioni Biciclette</button>
+            <div class="d-flex justify-content-center"> 
+                <button type="button" id="btnLogout" class="btn btn-primary btn-lg m-2" style="background-color: rgb(168, 4, 4); border-color: rgb(138, 2, 2);" onclick="window.location.href = '../index.html'">Logout</button><br><br><br>
+            </div>
         </div>
 
-        <div class="d-flex justify-content-center"> 
-            <button type="button" id="btnLogout" class="btn btn-primary btn-lg m-2" style="background-color: rgb(168, 4, 4); border-color: rgb(138, 2, 2);" onclick="window.location.href = '../index.html'">Logout</button>
+        <div id="form-container">
+
         </div>
     </div>
 

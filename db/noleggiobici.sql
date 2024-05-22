@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 20, 2024 alle 11:39
+-- Creato il: Mag 22, 2024 alle 17:31
 -- Versione del server: 10.4.32-MariaDB
--- Versione PHP: 8.2.12
+-- Versione PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -76,7 +76,8 @@ INSERT INTO `clienti` (`codice_identificativo`, `username`, `password`, `email`,
 (26, 'Antonio88', '$2y$10$acyR/P.ZJEMXC129vEkItewkZ5LGxcUPttAOWHSQqXorywYYmUPL6', 'antoninoLoveFutbal@gmail.com', 0, NULL),
 (27, 'alberto22', '$2y$10$ofZ6Z.nocqkzsm7OveyYTOQ8rUNaADnVymwWbYtQxX3gn9JaYvDIO', 'alberto@gmail.com', 0, NULL),
 (28, 'nicola23', '$2y$10$r.8KZ1AZciqdSqhvmpHCqevWN6axugNetSBAZ6lml3rpzCjN5ojIG', 'nicola@gmail.com', 0, NULL),
-(39, 'Finazzi90', '$2y$10$5Q8BKB3y6s8J0btYsMGvMO/pGc7LQc9dEWkpTiKe0jKPkYg/jZhk6', 'finazziGuidaOk@gmail.xom', 0, NULL);
+(39, 'Finazzi90', '$2y$10$5Q8BKB3y6s8J0btYsMGvMO/pGc7LQc9dEWkpTiKe0jKPkYg/jZhk6', 'finazziGuidaOk@gmail.xom', 0, NULL),
+(40, 'lorenzo', '$2y$10$G7OEGw6aZhjvaEXJq97r1OOYuUHZsfivf78hczYehW1XAxkA4GS.K', 'lorenzo56@gmail.com', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -121,7 +122,8 @@ INSERT INTO `indirizzi` (`ID`, `citta`, `via`, `numero_civico`, `cap`, `codice_c
 (7, 'Saronno', 'via dell\'alpino ', '22', '09999', 39),
 (8, 'Milano', 'Via Giorgio Pallavicino', '22', '20154', NULL),
 (9, 'Milano', 'Via Giulio Cesare Procaccini', '12', '20154', NULL),
-(10, 'Milano', 'Via Cappuccini', '1', '20122', NULL);
+(10, 'Milano', 'Via Cappuccini', '1', '20122', NULL),
+(11, 'cantu', 'milano', '56', '22063', 40);
 
 -- --------------------------------------------------------
 
@@ -145,7 +147,8 @@ INSERT INTO `smart_cards` (`ID`, `codice_cliente`) VALUES
 (15, 26),
 (16, 27),
 (17, 28),
-(28, 39);
+(28, 39),
+(29, 40);
 
 -- --------------------------------------------------------
 
@@ -155,6 +158,7 @@ INSERT INTO `smart_cards` (`ID`, `codice_cliente`) VALUES
 
 CREATE TABLE `stazione` (
   `ID` int(11) NOT NULL,
+  `nome` varchar(32) NOT NULL,
   `longitudine` varchar(32) NOT NULL,
   `latitudine` varchar(32) NOT NULL,
   `num_slot` int(11) NOT NULL,
@@ -166,10 +170,10 @@ CREATE TABLE `stazione` (
 -- Dump dei dati per la tabella `stazione`
 --
 
-INSERT INTO `stazione` (`ID`, `longitudine`, `latitudine`, `num_slot`, `num_bici_disp`, `id_indirizzo`) VALUES
-(1, '9.162878267065034', '45.47161109266796', 20, 20, 8),
-(2, '9.173351600765779', '45.483881813937124', 20, 20, 9),
-(3, '9.201922282117051', '45.47033854298927', 20, 20, 10);
+INSERT INTO `stazione` (`ID`, `nome`, `longitudine`, `latitudine`, `num_slot`, `num_bici_disp`, `id_indirizzo`) VALUES
+(1, 'Stazione 1', '9.162878267065034', '45.47161109266796', 20, 20, 8),
+(2, 'Stazione 2', '9.173351600765779', '45.483881813937124', 20, 20, 9),
+(3, 'Stazione 3', '9.201922282117051', '45.47033854298927', 20, 20, 10);
 
 --
 -- Indici per le tabelle scaricate
@@ -247,19 +251,19 @@ ALTER TABLE `carte_credito`
 -- AUTO_INCREMENT per la tabella `clienti`
 --
 ALTER TABLE `clienti`
-  MODIFY `codice_identificativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `codice_identificativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT per la tabella `indirizzi`
 --
 ALTER TABLE `indirizzi`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT per la tabella `smart_cards`
 --
 ALTER TABLE `smart_cards`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT per la tabella `stazione`
