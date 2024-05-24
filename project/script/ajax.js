@@ -198,6 +198,38 @@ function checkLoginStatus()
     } , "json");
 }
 
+//blocca carta dell'utente 
+function bloccaSmartCard()
+{
+    $.get("../ajax/bloccaCartaUtente.php", {} , function (data)
+    {
+        console.log(data);
+        alert(data.information);
+        window.location.href = "../index.html";
+    }, "json");
+}
+
+//ottengo tutte le richieste di blocco della carta
+function getRichiesteBlocco()
+{
+    $.get("../ajax/getRichiesteBlocco.php", {} , function (data)
+    {
+        console.log(data);
+        caricaFormRichiesteBlocco(data);
+    }, "json");
+}
+
+//rigerazione smart card di un utente (creazione nuova sc)
+function rigeneraSmartCard(id_utente)
+{
+    $.get("../ajax/creaNuovaSC.php", {id_utente: id_utente} , function (data)
+    {
+        console.log(data);
+        alert(data.information);
+        chiudi();
+    }, "json");
+}
+
 //logout
 function logout()
 {

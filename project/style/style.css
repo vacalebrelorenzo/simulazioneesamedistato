@@ -79,3 +79,10 @@ button {
     border-color: rgb(138, 2, 2);
 }
 
+.w-25 {
+width: 60%;
+}
+.w-50 {
+width: 50%;
+}
+

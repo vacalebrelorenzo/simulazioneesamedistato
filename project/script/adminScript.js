@@ -93,6 +93,49 @@ function caricaFormBiciclette() {
     $("#form-container").show();
 }
 
+//form che visualizza le richieste di blocco della carta
+function caricaFormRichiesteBlocco(data)
+{
+    $("#title").text("Richieste di Blocco Smart Cards");
+
+    let btnChiudi = '<button type="button" class="btn btn-secondary btn-lg m-2" onclick="chiudi()">Chiudi</button>';
+    
+    $("#form-container").html(
+      "<table border='1' class='table table-bordered'>" +  
+        "<thead>" + 
+          "<tr>" +
+            "<th>ID</th>" +  
+            "<th>id_richiesta</th>" +
+            "<th>username</th>" +
+            "<th class='w-25'>bottone rigenera</th>" +  
+          "</tr>" +
+        "</thead>" +
+        "<tbody>" +  
+        "</tbody>" +
+      "</table>"
+    );
+    
+    for (let i = 0; i < data["vettore"].length; i++) {
+      $("#form-container tbody").append(  
+        "<tr>" +
+          "<td>" + data["vettore"][i]["ID"] + "</td>" +
+          "<td>" + data["vettore"][i]["id_utente"] + "</td>" +
+          "<td>" + data["vettore"][i]["username"] + "</td>" +
+          "<td class='w-25'>" + 
+            '<button type="button" id="' + data["vettore"][i]["id_utente"] + '" class="btn btn-success" onclick="rigeneraSmartCard(' + data["vettore"][i]["id_utente"] + ')">Rigenera</button>' +
+          "</td>" +
+        "</tr>"
+      );
+    }    
+    
+    $("#form-container").append(btnChiudi);
+    
+    $("#main-info").hide();
+    $("#form-container").show();
+  
+  
+}
+
 //funzione per chiudere una form 
 function chiudi() {
   $("#form-container").empty();

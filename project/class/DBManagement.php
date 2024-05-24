@@ -803,6 +803,161 @@
                 return $status;
             }
         }
-    }
 
+        //aggiunta richiesta utente di voler una nuova smart card nel db
+        private function aggiungiRichiestaNuovaSC($id, $us)
+        {
+            $conn = new mysqli($this->hostname, $this->username, $this->password, $this->database);
+
+            if ($conn->connect_error) {
+                die("Connessione fallita: " . $conn->connect_error);
+            }
+
+            $sql = "INSERT INTO richieste_blocco (id_utente, username) VALUES (?,?)";
+
+            $stmt = $conn->prepare($sql);
+
+            if (!$stmt) {
+                die("Errore nella preparazione della query: " . $conn->error);
+            }
+
+            $stmt->bind_param("is", $id, $us);
+
+            $status = "";
+
+            if($stmt->execute())
+                $status = array("status"=> "ok", "information" => "Richiesta inserita con successo!");
+            else
+                $status = array("status"=> "error", "information" => "Non è stato possibile effettuare la richiesta");
+
+            $stmt->close();
+            $conn->close();    
+            
+            return $status;
+        }
+
+        //blocco della smart card di un utente (rimozione dal db)
+        public function bloccaSmartCard($us)
+        {
+            $vett = $this->controlloPresenzaUsername($us);
+            $id_utente = $vett["idUtente"];
+
+            if($id_utente != "-1")
+            {
+                $conn = new mysqli($this->hostname, $this->username, $this->password, $this->database);
+
+                if ($conn->connect_error) {
+                    die("Connessione fallita: " . $conn->connect_error);
+                }
+
+                $sql = "DELETE FROM smart_cards WHERE codice_cliente = ?";
+                $stmt = $conn->prepare($sql);
+
+                if (!$stmt) {
+                    die("Errore nella preparazione della query: " . $conn->error);
+                }
+
+                $stmt->bind_param("i", $id_utente);
+
+                $status = "";
+                $status3 = "";
+
+                if($stmt->execute())
+                {
+                    $status = $this->aggiungiRichiestaNuovaSC($id_utente, $us);
+                    if($status["status"] ==="ok")
+                        $status3 = array("status" => "ok", "information" => "Smart card bloccata con successo!", "username" => $us);
+                    else
+                        $status3 = array("status" => "error", "information" => "Non è stato possibile bloccare la smart card", "username" => $us);
+                }   
+                else
+                    $status3 = array("status" => "error", "information" => "Non è stato possibile bloccare la smart card","username" => "undefined");
+
+                $stmt->close();
+                $conn->close();
+
+                return $status3;
+            }
+
+        }
+
+        //prendo tutte le richieste di bloccare la propria carta
+        public function getRichiesteBlocco()
+        {
+            $conn = new mysqli($this->hostname, $this->username, $this->password, $this->database);
+
+            if ($conn->connect_error) {
+                die("Connessione fallita: " . $conn->connect_error);
+            }
+
+            $sql = "SELECT * FROM richieste_blocco";
+            $stmt = $conn->prepare($sql);
+
+            if (!$stmt) {
+                die("Errore nella preparazione della query: " . $conn->error);
+            }
+
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+
+            $arr = array();
+            
+            if($result->num_rows > 0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                    $arr[] = $row;
+                }
+            }
+            return array("status" => "ok", "vettore" => $arr);
+        }
+
+        //rimozione richiesta effettuata da un utente
+        private function rimuoviRichiesta($id_utente)
+        {
+            $conn = new mysqli($this->hostname, $this->username, $this->password, $this->database);
+
+            if ($conn->connect_error) {
+                die("Connessione fallita: " . $conn->connect_error);
+            }
+
+            $sql = "DELETE FROM richieste_blocco WHERE id_utente = ?";
+            $stmt = $conn->prepare($sql);
+
+            if (!$stmt) {
+                die("Errore nella preparazione della query: " . $conn->error);
+            }
+
+            $stmt->bind_param("i", $id_utente);
+
+            $status = "";
+
+            if($stmt->execute())
+                $status = array("status" => "ok", "information" => "Bici rimossa con successo!");
+            else
+                $status = array("status" => "error", "information" => "Non è stato possibile rimuovere la bici");
+
+            $stmt->close();
+            $conn->close();
+
+            return $status;
+        }
+
+        //gestione creazione (rigenerazione) nuova smart card per l'utente
+        public function gestioneNuovaSC($id_utente)
+        {
+            $status2 = $this->rimuoviRichiesta($id_utente);
+            if($status2["status"] === "ok")
+            {
+                $status = $this->creaTessera($id_utente);
+                if($status["status"] === "ok")
+                    $status = array("status" => "ok", "information" => "Rigenerazione smart card avvenuta con successo!");
+            
+            }
+            else
+                $status = array("status" => "ok", "information" => "Non è stato possibile rimuovere la richiesta di blocco carta");
+            return $status;
+        }
+    }
 ?>
