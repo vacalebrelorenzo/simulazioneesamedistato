@@ -1,6 +1,10 @@
 <?php
+    //Pagina dell'admin
     if(!isset($_SESSION))
+    {
+        ini_set('session.cookie_lifetime', 0); 
         session_start();
+    }
     if(!isset($_SESSION["username"]))
         header("location: ../index.html");
 ?>
@@ -36,7 +40,7 @@
             </div>
 
             <div class="d-flex justify-content-center"> 
-                <button type="button" id="btnLogout" class="btn btn-primary btn-lg m-2" style="background-color: rgb(168, 4, 4); border-color: rgb(138, 2, 2);" onclick="window.location.href = '../index.html'">Logout</button><br><br><br>
+                <button type="button" id="btnIndietro" class="btn btn-danger btn-lg m-2" onclick="window.location.href = '../index.html'">indietro</button><br><br><br>
             </div>
         </div>
 

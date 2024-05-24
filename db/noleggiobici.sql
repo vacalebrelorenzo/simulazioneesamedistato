@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 22, 2024 alle 17:31
+-- Creato il: Mag 24, 2024 alle 01:29
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.0.30
 
@@ -35,6 +35,13 @@ CREATE TABLE `bici` (
   `codice_gps` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dump dei dati per la tabella `bici`
+--
+
+INSERT INTO `bici` (`codice_identificativo`, `km_totali`, `isRented`, `id_stazione`, `codice_gps`) VALUES
+(4, 890, 0, 5, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -58,7 +65,7 @@ CREATE TABLE `carte_credito` (
 CREATE TABLE `clienti` (
   `codice_identificativo` int(11) NOT NULL,
   `username` varchar(32) NOT NULL,
-  `password` varchar(64) NOT NULL,
+  `password` varchar(128) NOT NULL,
   `email` varchar(64) NOT NULL,
   `isAdmin` tinyint(1) NOT NULL,
   `codice_bici` int(11) DEFAULT NULL
@@ -76,8 +83,7 @@ INSERT INTO `clienti` (`codice_identificativo`, `username`, `password`, `email`,
 (26, 'Antonio88', '$2y$10$acyR/P.ZJEMXC129vEkItewkZ5LGxcUPttAOWHSQqXorywYYmUPL6', 'antoninoLoveFutbal@gmail.com', 0, NULL),
 (27, 'alberto22', '$2y$10$ofZ6Z.nocqkzsm7OveyYTOQ8rUNaADnVymwWbYtQxX3gn9JaYvDIO', 'alberto@gmail.com', 0, NULL),
 (28, 'nicola23', '$2y$10$r.8KZ1AZciqdSqhvmpHCqevWN6axugNetSBAZ6lml3rpzCjN5ojIG', 'nicola@gmail.com', 0, NULL),
-(39, 'Finazzi90', '$2y$10$5Q8BKB3y6s8J0btYsMGvMO/pGc7LQc9dEWkpTiKe0jKPkYg/jZhk6', 'finazziGuidaOk@gmail.xom', 0, NULL),
-(40, 'lorenzo', '$2y$10$G7OEGw6aZhjvaEXJq97r1OOYuUHZsfivf78hczYehW1XAxkA4GS.K', 'lorenzo56@gmail.com', 0, NULL);
+(39, 'Finazzi90', '$2y$10$5Q8BKB3y6s8J0btYsMGvMO/pGc7LQc9dEWkpTiKe0jKPkYg/jZhk6', 'finazziGuidaOk@gmail.xom', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -123,7 +129,9 @@ INSERT INTO `indirizzi` (`ID`, `citta`, `via`, `numero_civico`, `cap`, `codice_c
 (8, 'Milano', 'Via Giorgio Pallavicino', '22', '20154', NULL),
 (9, 'Milano', 'Via Giulio Cesare Procaccini', '12', '20154', NULL),
 (10, 'Milano', 'Via Cappuccini', '1', '20122', NULL),
-(11, 'cantu', 'milano', '56', '22063', 40);
+(13, 'Milano', 'via passione', '12', '20122', NULL),
+(38, 'Milano', 'Via passione', '12', '20122', NULL),
+(40, 'Milano', 'Via Antonio Fogazzaro', '23', '20135', NULL);
 
 -- --------------------------------------------------------
 
@@ -147,8 +155,7 @@ INSERT INTO `smart_cards` (`ID`, `codice_cliente`) VALUES
 (15, 26),
 (16, 27),
 (17, 28),
-(28, 39),
-(29, 40);
+(28, 39);
 
 -- --------------------------------------------------------
 
@@ -173,7 +180,8 @@ CREATE TABLE `stazione` (
 INSERT INTO `stazione` (`ID`, `nome`, `longitudine`, `latitudine`, `num_slot`, `num_bici_disp`, `id_indirizzo`) VALUES
 (1, 'Stazione 1', '9.162878267065034', '45.47161109266796', 20, 20, 8),
 (2, 'Stazione 2', '9.173351600765779', '45.483881813937124', 20, 20, 9),
-(3, 'Stazione 3', '9.201922282117051', '45.47033854298927', 20, 20, 10);
+(3, 'Stazione 3', '9.201922282117052', '45.47033854298927', 89, 20, 10),
+(5, 'Stazione Margherita', '9.209766', '45.457833', 54, 70, 40);
 
 --
 -- Indici per le tabelle scaricate
@@ -193,8 +201,7 @@ ALTER TABLE `bici`
 --
 ALTER TABLE `carte_credito`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `id_cliente` (`codice_cliente`),
-  ADD KEY `codice_cliente` (`codice_cliente`);
+  ADD KEY `id_cliente` (`codice_cliente`);
 
 --
 -- Indici per le tabelle `clienti`
@@ -239,37 +246,37 @@ ALTER TABLE `stazione`
 -- AUTO_INCREMENT per la tabella `bici`
 --
 ALTER TABLE `bici`
-  MODIFY `codice_identificativo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codice_identificativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `carte_credito`
 --
 ALTER TABLE `carte_credito`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `clienti`
 --
 ALTER TABLE `clienti`
-  MODIFY `codice_identificativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `codice_identificativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT per la tabella `indirizzi`
 --
 ALTER TABLE `indirizzi`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT per la tabella `smart_cards`
 --
 ALTER TABLE `smart_cards`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT per la tabella `stazione`
 --
 ALTER TABLE `stazione`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Limiti per le tabelle scaricate

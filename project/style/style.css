@@ -1,3 +1,5 @@
+/*Stile generale delle pagine accompagnato da bootstrap
+*/
 body {
     background: linear-gradient(180deg, #60ccdb, #1a8c9b, #0b5d88);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -49,16 +51,6 @@ button {
     border-color: #0288d1;
 }
 
-.btn-secondary {
-    background-color: #80deea;
-    border-color: #80deea;
-}
-
-.btn-success {
-    background-color: #0288d1;
-    border-color: #0288d1;
-}
-
 #closeReg, #closeLog {
     margin-top: 10px;
 }
@@ -81,3 +73,9 @@ button {
     height: 50vh;
     width: 100%;
 }  
+
+.btn-danger{
+    background-color: rgb(168, 4, 4); 
+    border-color: rgb(138, 2, 2);
+}
+

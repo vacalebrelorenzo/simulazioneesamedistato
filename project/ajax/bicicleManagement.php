@@ -1,8 +1,13 @@
 <?php
+    //ws utile a gestire le biciclette
+    include "../class/DBManagement.php" ;
 
-//Tramite get riceverà anche l'operazione da dover eseguire
+    $dbM = new DBManagement();
 
-//isRented sarà di default a 0
-//id-stazione bisogna ricavarlo con SQL dato il nome della stazione
- 
+    if($_GET["operazione"] === "aggiungi")
+        $status = $dbM->aggiungiBici($_GET["nome"], $_GET["kmPercorsi"]);
+    else if($_GET["operazione"] === "elimina")
+        $status = $dbM->eliminaBici($_GET["id_bici"]);
+
+    echo json_encode($status);
 ?>

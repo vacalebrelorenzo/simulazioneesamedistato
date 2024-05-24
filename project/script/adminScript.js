@@ -1,3 +1,4 @@
+//forma info stazioni
 function caricaFormStazioni() {
     
     $("#title").text("Stazioni");
@@ -5,7 +6,7 @@ function caricaFormStazioni() {
     //aggiungi
     let nome = '<input type="text" id="station-name-add" style = "width: 100%;" placeholder="inserisci il nome della stazione" required>';
     let lat = '<input type="text" id="station-lat" style = "width: 100%;" placeholder="inserisci la latitudine" required>';
-    let long = '<input type="text" id="station-lon" style = "width: 100%;" placeholder="inserisci la longitudine" required>';
+    let long = '<input type="text" id="station-long" style = "width: 100%;" placeholder="inserisci la longitudine" required>';
     let numSlot = '<input type="text" id="num-slot" style = "width: 100%;" placeholder="inserisci il numero di slot" required>';
     let citta = '<input type="text" id="citta" style = "width: 100%; class="form-control" placeholder="Inserisci la città" required>';
     let cap = '<input type="text" id="cap" style = "width: 100%;class="form-control" placeholder="Inserisci il CAP" required>';
@@ -15,7 +16,7 @@ function caricaFormStazioni() {
   
     //elimina
     let nomeElim = '<input type="text" id="station-name-remove" style = "width: 100%;" placeholder="inserisci il nome della stazione" required>';
-    let btnElimina = '<button type="button" id="btnEliminaStazione" class="btn btn-primary btn-lg m-2" style="background-color: rgb(168, 4, 4); border-color: rgb(138, 2, 2);" onclick = "eliminaStazione()">Elimina</button>';
+    let btnElimina = '<button type="button" id="btnElimina" class="btn btn-danger btn-lg m-2" onclick = "eliminaStazione()">Elimina</button>';
   
     let btnChiudi = '<button type="button" class="btn btn-secondary btn-lg m-2" onclick = "chiudi()">Chiudi</button>';
   
@@ -35,18 +36,21 @@ function caricaFormStazioni() {
     $("#form-container").show();
 }
 
+//form info slot
 function caricaFormSlot() {
     $("#title").text("Slot");
 
     //edit
-    let nomeMod = '<input type="text" id="station-name-mod" style = "width: 60%;" placeholder="inserisci il nome della stazione" required>';
-    let nuovoNumSlotMod = '<input type="text" id="new-slot-mod" style = "width: 60%;" placeholder="inserisci il nuovo numero di slot" required>';
+    let nomeMod = '<input type="text" id="station-name-mod" style = "width: 50%;" placeholder="inserisci il nome della stazione" required>';
+    let nuovoNumSlotMod = '<input type="text" id="new-slot-mod" style = "width: 50%;" placeholder="inserisci il nuovo numero di slot" required>';
     let btnModifica = '<button type="button" id="btnModificaSlot" class="btn btn-primary btn-lg m-2" onclick = "modificaSlot()">Modifica</button>';
 
     let btnChiudi = '<button type="button" class="btn btn-secondary btn-lg m-2" onclick = "chiudi()">Chiudi</button>';
 
     $("#form-container").html(
+      '<div class="col-12 text-center">' +
         nomeMod + nuovoNumSlotMod + btnModifica +
+      '</div>' +
       '<div class="col-12 text-center">' +
         btnChiudi +
       '</div>'
@@ -56,6 +60,7 @@ function caricaFormSlot() {
     $("#form-container").show();
 }
 
+//form info bici
 function caricaFormBiciclette() {
 
     $("#title").text("Biciclette");
@@ -64,11 +69,11 @@ function caricaFormBiciclette() {
     //inserire la bici in una stazione
     let nomeStazione = '<input type="text" id="station-name" style = "width: 100%;" placeholder="inserisci il nome della stazione" required>';
     let kmtot = '<input type="text" id="kmTot" style = "width: 100%;" placeholder="inserisci i kilometri totali percorsi" required>';
-    let btnAggiungi = '<button type="button" id="btnAggiungiStazione" class="btn btn-primary btn-lg m-2" onclick = "aggiungiBicicletta()">Aggiungi</button>';
+    let btnAggiungi = '<button type="button" id="btnAggiungiBici" class="btn btn-primary btn-lg m-2" onclick = "aggiungiBicicletta()">Aggiungi</button>';
 
     //Elimina
-    let id_bici = '<input type="text" id="kmTot" style = "width: 100%;" placeholder="inserisci id bici" required>';
-    let btnElimina = '<button type="button" id="btnEliminaStazione" class="btn btn-primary btn-lg m-2" style="background-color: rgb(168, 4, 4); border-color: rgb(138, 2, 2);" onclick = "rimuoviBicicletta()">Elimina</button>';
+    let id_bici = '<input type="text" id="id_bici" style = "width: 100%;" placeholder="inserisci id bici" required>';
+    let btnElimina = '<button type="button" id="btnElimina" class="btn btn-danger btn-lg m-2" onclick = "rimuoviBicicletta()">Elimina</button>';
 
     let btnChiudi = '<button type="button" class="btn btn-secondary btn-lg m-2" onclick = "chiudi()">Chiudi</button>';
 
@@ -88,6 +93,7 @@ function caricaFormBiciclette() {
     $("#form-container").show();
 }
 
+//funzione per chiudere una form 
 function chiudi() {
   $("#form-container").empty();
   $("#title").text("Pagina Admin");

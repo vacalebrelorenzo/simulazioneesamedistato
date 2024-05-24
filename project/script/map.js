@@ -1,9 +1,11 @@
+//gestione mapp
 $(document).ready(function(){
     getStationLocation();
 });
 
 var map;
 
+//mappa iniziale
 document.addEventListener('DOMContentLoaded', (event) => {
 
     map = L.map('map').setView([45.4654219, 9.1859243], 13);
@@ -13,6 +15,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }).addTo(map);
 });
 
+//aggiunta di tutti i marker
 function addMarker(data)
 {
     for(let i = 0; i < data["vettore"].length; i++)

@@ -1,3 +1,4 @@
+//form registrazione
 function caricaFormRegistrazione() {
     let title = "<h1>Registrati!</h1>";
     let us = '<input type="text" id="usn" class="form-control" placeholder="Inserisci il tuo username" required>';
@@ -15,6 +16,7 @@ function caricaFormRegistrazione() {
     $("#form-container").show();
 }
 
+//form login
 function caricaFormLogin() {
     let title = "<h1>Login!</h1>";
     let us = "<input type='text' id='username' class='form-control' placeholder='Inserisci username!' required>";
@@ -27,6 +29,7 @@ function caricaFormLogin() {
     $("#form-container").show();
 }
 
+//resetta form
 function resettaForm() {
     $("#form-content").empty();
     $("#start").show();

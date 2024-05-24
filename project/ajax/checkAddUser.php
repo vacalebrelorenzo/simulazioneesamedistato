@@ -1,4 +1,5 @@
 <?php
+    //ws utile a controllare l'username dell'utente
     include "../class/DBManagement.php" ;
 
     $dbM = new DBManagement();

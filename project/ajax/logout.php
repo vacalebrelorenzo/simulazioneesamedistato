@@ -1,4 +1,5 @@
 <?php
+    //ws logout
     if(isset($_SESSION))
     {
         session_unset();

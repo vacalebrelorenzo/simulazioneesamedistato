@@ -1,4 +1,5 @@
 <?php
+    //ws utile ad aggiungere un nuovo indirizzo al db
     include "../class/DBManagement.php" ;
 
     $dbM = new DBManagement();

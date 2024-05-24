@@ -15,6 +15,7 @@
     <script src="script/map.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="script/leaflet.js"></script>
+    <script src="script/caricaIndex.js"></script>
     <style>
         #map {
             height: 50vh;
@@ -36,7 +37,8 @@
         </div>
         <div id="plus-buttons" class="d-flex justify-content-center"> 
             <button type="button" id="btnAdmin" class="btn btn-primary btn-lg m-2" style="display: none;" onclick="window.location.href = 'pages/adminPage.php'">Opzioni Admin</button>
-            <button type="button" id="btnLogout" class="btn btn-primary btn-lg m-2" style="display: none; background-color: rgb(168, 4, 4); border-color: rgb(138, 2, 2);" onclick="logout()">Logout</button>
+            <button type="button" id="btnUser" class="btn btn-primary btn-lg m-2" style="display: none;" onclick="window.location.href = 'pages/userPage.php'">Apri Profilo</button>
+            <button type="button" id="btnLogout" class="btn btn-danger btn-lg m-2" style="display: none;" onclick="logout()">Logout</button>
         </div>
         <br> <br> 
         <div id="map"></div>
